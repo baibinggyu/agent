@@ -43,3 +43,4 @@ Makefile
 Thumbs.db
 
 *.sh
+main.cpp

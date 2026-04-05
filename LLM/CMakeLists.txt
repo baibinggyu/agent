@@ -3,6 +3,7 @@ add_library(llm SHARED
 )
 target_include_directories(llm PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
 )
 
@@ -11,3 +12,15 @@ set_target_properties(llm PROPERTIES
     SOVERSION 1
 )
 add_library(baiyu::llm ALIAS llm)
+install(TARGETS llm 
+    EXPORT baiyuTargets
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin
+)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/llm.h" 
+    DESTINATION include
+)
+install(DIRECTORY "${CMAKE_SOURCE_DIR}/boost"
+    DESTINATION include
+)

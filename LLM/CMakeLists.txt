@@ -4,9 +4,11 @@ add_library(llm SHARED
 target_include_directories(llm PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/json/include>
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/spdlog>
     $<INSTALL_INTERFACE:include>
 )
-
+target_link_libraries(llm PRIVATE ${CMAKE_SOURCE_DIR}/json/lib/libjsoncpp.a)
 set_target_properties(llm PROPERTIES
     VERSION 1.0
     SOVERSION 1
